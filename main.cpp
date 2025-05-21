@@ -24,6 +24,9 @@ int main(){
     count++;
     
     // Implementing the Hints
+    if((actualRandom-guess) <= 5 ||  (actualRandom-guess) >= -5 ){
+        cout << "💡Hint: A very close guess, a little more try" << endl; 
+    }
     if((actualRandom-guess) >= 10 ){
         cout << "💡Hint: Guess is too low, try again" << endl; 
     }
