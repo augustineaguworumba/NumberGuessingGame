@@ -12,20 +12,28 @@ int getRandom1To100() {
 }
 
 int main(){
-    int actualRandom = getRandom1To100();
-    std::cout << actualRandom << endl;
-    int guessedRandom{};
-    std::cout << "Guess a random number between 1 and 100" << endl;
-    std::cin >> guessedRandom;
-    if(!(guessedRandom) || guessedRandom < 1 || guessedRandom > 100)
-        cerr << "Invalid entry, please choose another number" << endl;
-        return 1;
+    int actualRandom {getRandom1To100()};
+    int guess{};
+    int count{0};
+    do{
+        do {
+        std::cout << "Guess a random number between 1 and 100" << endl;
+        std::cin >> guess;
+        } while (guess < 1 || guess > 100);
+    // Update the count
+    count++;
     
-    // Compare the actual random num and the guessed num
-    if(actualRandom != guessedRandom)
-        cout << "Oops... you missed it at the " /*<< nth*/ << " try. Guess another number." << endl;
-        cout << "🔥👨‍🎓 Wow...Big congrats, you got it right at your " /*<< nth*/ << " try " << endl;
-        cout << "The actual random is: " << actualRandom << endl;
+    // Implementing the Hints
+    if((actualRandom-guess) >= 10 ){
+        cout << "💡Hint: Guess is too low, try again" << endl; 
+    }
+    if((actualRandom-guess) <= -10 ){
+        cout << "💡Hint: Guess is too high, try again" << endl; 
+    }
+    } while (actualRandom != guess);
+    
+        cout << "🔥👨‍🎓 Wow...Big congrats, you guessed it right in " << count << " tries " << endl;
+        cout << "The random number is: " << actualRandom << endl;
     
     return 0;
     }
